@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GameVault.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <!-- Título -->
+            <Label
+                Text="🎮 Catálogo GameVault"
+                FontSize="26"
+                HorizontalOptions="Center" />
+
+            <!-- FORMULARIO -->
+            <Entry x:Name="txtNombre" Placeholder="Nombre del activo" />
+            <Entry x:Name="txtPlataforma" Placeholder="Plataforma" />
+
+            <Picker x:Name="pkCategoria" Title="Categoría">
+                <Picker.Items>
+                    <x:String>Videojuego</x:String>
+                    <x:String>Consola</x:String>
+                    <x:String>Accesorio</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Picker x:Name="pkEstado" Title="Estado">
+                <Picker.Items>
+                    <x:String>Nuevo</x:String>
+                    <x:String>Usado</x:String>
+                    <x:String>Colección</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Agregar Activo" Clicked="AgregarActivo"/>
+            <Button Text="Limpiar" Clicked="LimpiarCampos"/>
+
+            <!-- FILTROS -->
+            <Label Text="Catálogo" FontSize="20"/>
+
+            <SearchBar
+                x:Name="sbBuscar"
+                Placeholder="Buscar por nombre"
+                TextChanged="BuscarActivo"/>
+
+            <Picker
+                x:Name="pkFiltroCategoria"
+                Title="Filtrar categoría"
+                SelectedIndexChanged="FiltrarCategoria">
+                <Picker.Items>
+                    <x:String>Todos</x:String>
+                    <x:String>Videojuego</x:String>
+                    <x:String>Consola</x:String>
+                    <x:String>Accesorio</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- CATÁLOGO -->
+            <CollectionView x:Name="cvActivos">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Plataforma}"/>
+                                <Label Text="{Binding Categoria}"/>
+                                <Label Text="{Binding Estado}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
